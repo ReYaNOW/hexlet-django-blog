@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.views import View
 
 
-def index(request):
-    return render(
-        request,
-        'articles/article.html',
-        context={'app_name': 'hexlet_django_blog.article'},
-    )
+class IndexView(View):
+    
+    def get(self, request, tags='', article_id=''):
+        return render(
+            request,
+            'articles/article.html',
+            context={'tags': tags, 'article_id': article_id},
+        )
