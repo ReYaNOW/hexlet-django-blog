@@ -1,12 +1,30 @@
-from django.shortcuts import render
 from django.views import View
+from django.shortcuts import render, get_object_or_404
+
+from hexlet_django_blog.article.models import Article
 
 
 class IndexView(View):
-    
-    def get(self, request, tags='', article_id=''):
+    template_name = 'index.html'
+
+    def get(self, request):
+        articles = Article.objects.all()[:15]
         return render(
             request,
-            'articles/article.html',
-            context={'tags': tags, 'article_id': article_id},
+            'articles/index.html',
+            context={
+                'articles': articles,
+            },
+        )
+
+
+class ArticleView(View):
+    def get(self, request, id):
+        article = get_object_or_404(Article, id=id)
+        return render(
+            request,
+            'articles/show.html',
+            context={
+                'article': article,
+            },
         )
