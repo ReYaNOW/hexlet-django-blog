@@ -8,7 +8,7 @@ class IndexView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         return redirect(
-            reverse('article', kwargs={'tags': 'python', 'article_id': 42})
+            reverse('article', kwargs={'id': 3})
         )
 
 
