@@ -3,4 +3,8 @@
 {% block content %}
      <h1>{{ article.name }}</h1>
     <div>{{ article.body }}</div>
+  <form action="{% url 'articles_update' article.id %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Изменить">
+  </form>
 {% endblock %}
