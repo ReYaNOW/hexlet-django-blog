@@ -40,7 +40,7 @@ class ArticleFormCreateView(View):
         if form.is_valid():
             form.save()
             messages.success(request, 'Статья успешно добавлена')
-            
+
             return redirect('article_index')
 
         return render(request, 'articles/create.html', {'form': form})
